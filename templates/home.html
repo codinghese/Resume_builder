@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div align="center">
+  <h1> Welcome to Resume Builder</h1><br>
+  <h3> The Fast way to build resume on a go!</h3> <br>
+
+  <p> This app uses Flask, A light weight Python framework that helps you build small to medium small web application and Rest API on a fly.</p>
+</div>
+
+<div align="center">
+  <button type="button" onclick="window.location.href='{{ url_for('resume_builder')}}';" class="btn btn-primary btn-lg">Build Resume</button>
+</div>
+{% endblock %}
