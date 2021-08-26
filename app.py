@@ -5,30 +5,44 @@ app.secret_key = 'bhanu'
 def Home():
     return render_template('home.html')
 
-@app.route('/resume',methods=['POST','GET'])
-def resume_builder():
+@app.route('/basic',methods=['POST','GET'])
+def basic():
 
     if request.method=="POST":
         name=request.form.get('name')
         email=request.form.get('email')
         phone=request.form.get('phone')
         address=request.form.get('address')
+        a=True
         print(name+" "+ address+" "+phone)
 
         if len(name)<2:
             flash("Name too short",category='error')
+            a=False
             
         if len(phone)<10:
             flash("Please enter a valid phone number",category='error')
+            a=False
+
         if len(address)<4:
             flash("Address  to Short",category='error')
-        
+            a=False
         if len(email)<4:
             flash("Invalid email",category='error')
-
-        else:
-            flash("Data Captured Successfully ",category='success')
+            a=False
         
-    return render_template('resume.html')
+        
+        if a:
+            l=[]
+            l.append(name)
+            l.append(email)
+            l.append(address)
+            l.append(phone)
+            flash("Data Captured Successfully ",category='success')
+            return render_template('resume.html',l=l)
+
+        
+        
+    return render_template('basic.html')
 
 app.run(debug=True)
